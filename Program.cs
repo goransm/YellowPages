@@ -18,7 +18,7 @@ namespace YellowPages
 
             contacts.ForEach(delegate(Contact contact)
             {
-                Console.WriteLine(contact.toString());
+                Console.WriteLine(contact.Name);
             });
 
            
@@ -32,7 +32,7 @@ namespace YellowPages
                 {
                     if (contacts.ElementAt(i).search(search))
                     {
-                        Console.WriteLine(contacts.ElementAt(i).toString());
+                        Console.WriteLine(contacts.ElementAt(i).Name);
                     }
                 }
             } while (search != "ragequit");
@@ -41,14 +41,10 @@ namespace YellowPages
 
     class Contact
     {
-        string firstName, lastName;
-        public string fullName
-        {
-            get
-            {
-                return firstName + " " + lastName;
-            }
-        }
+        private string firstName, lastName;
+        public string Name { get => firstName + " " + lastName; }
+
+ 
 
         public Contact(string a, string b)
         {
@@ -57,17 +53,12 @@ namespace YellowPages
         }
         public bool search(string searchString)
         {
-            return caseInsensitiveMatch(firstName, searchString) || caseInsensitiveMatch(lastName, searchString) || caseInsensitiveMatch(fullName, searchString);
+            return caseInsensitiveMatch(firstName, searchString) || caseInsensitiveMatch(lastName, searchString) || caseInsensitiveMatch(Name, searchString);
         }
 
         private bool caseInsensitiveMatch(string text, string searchString)
         {
             return text.ToLower().Contains(searchString.ToLower());
-        }
-
-        public string toString()
-        {
-            return fullName;
         }
     }
 }
