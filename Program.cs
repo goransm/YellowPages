@@ -16,10 +16,12 @@ namespace YellowPages
             contacts.Add(new Contact("Sean", "Connery"));
             contacts.Add(new Contact("Walter", "Skinner"));
 
-            for(int i = 0; i < contacts.Count; i++)
+            contacts.ForEach(delegate(Contact contact)
             {
-                Console.WriteLine(contacts.ElementAt(i).toString());
-            }
+                Console.WriteLine(contact.toString());
+            });
+
+           
             Console.WriteLine("Type a name to search for:");
             string search = "";
             do
