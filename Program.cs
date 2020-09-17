@@ -42,6 +42,13 @@ namespace YellowPages
     class Contact
     {
         string firstName, lastName;
+        public string fullName
+        {
+            get
+            {
+                return firstName + " " + lastName;
+            }
+        }
 
         public Contact(string a, string b)
         {
@@ -50,15 +57,17 @@ namespace YellowPages
         }
         public bool search(string searchString)
         {
-            string fullName = firstName + " " + lastName;
-            string lowerSearch = searchString.ToLower();
-            
-            return firstName.ToLower().Contains(lowerSearch) || lastName.ToLower().Contains(lowerSearch) || fullName.ToLower().Contains(lowerSearch);
+            return caseInsensitiveMatch(firstName, searchString) || caseInsensitiveMatch(lastName, searchString) || caseInsensitiveMatch(fullName, searchString);
+        }
+
+        private bool caseInsensitiveMatch(string text, string searchString)
+        {
+            return text.ToLower().Contains(searchString.ToLower());
         }
 
         public string toString()
         {
-            return firstName + " " + lastName;
+            return fullName;
         }
     }
 }
